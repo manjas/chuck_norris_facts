@@ -10,6 +10,12 @@ export const Container = styled.div`
   height: 100vh;
   padding: 50px;
   box-sizing: content-box;
+  @media (max-width: 768px) {
+    padding: 10px;
+    width: 100%;
+    background: unset;
+    box-sizing: border-box;
+  }
 `;
 
 export const HeaderLabel = styled.div`
@@ -19,7 +25,27 @@ export const HeaderLabel = styled.div`
   writing-mode: vertical-lr;
   text-align: center;
   line-height: 0.9;
-  background: -webkit-linear-gradient(#99705e, #4a271d, #35160c, #000000);
+  background: -webkit-linear-gradient(
+    rgba(192, 154, 130, 1) 0%,
+    rgba(119, 81, 61, 1) 32%,
+    rgba(36, 17, 19, 1) 64%,
+    rgba(19, 8, 7, 1) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  @media (max-width: 768px) {
+    font-size: 37px;
+    writing-mode: horizontal-tb;
+    position: relative;
+    margin: 20px 0;
+    background: linear-gradient(
+      90deg,
+      rgba(192, 154, 130, 1) 0%,
+      rgba(119, 81, 61, 1) 32%,
+      rgba(36, 17, 19, 1) 64%,
+      rgba(19, 8, 7, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 `;

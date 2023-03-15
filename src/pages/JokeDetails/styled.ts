@@ -3,13 +3,14 @@ import styled from 'styled-components';
 export const JokeDetailsContainer = styled.div`
   width: 50%;
   padding: 9px 20px;
-  box-shadow: 6px 7px 20px -2px rgba(120, 120, 120, 0.48);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   background-color: white;
   border-radius: 12.5px;
   display: flex;
   gap: 20px;
   position: absolute;
   align-items: center;
+  border-bottom: 3px solid #ae8a73;
   top: 30%;
   > div {
     font-weight: 500;
@@ -19,6 +20,13 @@ export const JokeDetailsContainer = styled.div`
   > img {
     max-width: 100px;
     height: auto;
+  }
+  @media (max-width: 768px) {
+    top: 5%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    flex-direction: column;
   }
 `;
 

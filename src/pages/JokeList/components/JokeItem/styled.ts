@@ -11,7 +11,7 @@ export const JokeItemWrapper = styled.div`
   align-items: center;
   -webkit-box-pack: justify;
   justify-content: space-between;
-  box-shadow: 6px 7px 20px -2px rgba(120, 120, 120, 0.48);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   background-color: white;
   transition: all 0.2s ease 0s;
   border-radius: 12.5px;
@@ -24,7 +24,10 @@ export const JokeItemWrapper = styled.div`
   text-overflow: ellipsis;
   display: inline-block;
   &:hover {
-    background-color: rgb(242, 242, 242);
+    background-color: #ae8a7236;
+  }
+  @media (max-width: 768px) {
+    max-width: 90%;
   }
 `;
 

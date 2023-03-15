@@ -8,13 +8,17 @@ const JokeDetails = () => {
   const { joke }: { joke: IJoke } = state;
 
   return (
-    <div>
+    <>
       <Button onClick={() => navigate(-1)}>Go Back</Button>
       <JokeDetailsContainer>
-        <img src={joke?.icon_url} alt='No image' />
+        {/* <img src={joke?.icon_url} alt='No image' /> */}
+        <img
+          src={'https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png'}
+          alt='No image'
+        />
         <div> {joke?.value}</div>
       </JokeDetailsContainer>
-    </div>
+    </>
   );
 };
 export default JokeDetails;

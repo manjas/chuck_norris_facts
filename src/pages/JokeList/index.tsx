@@ -38,7 +38,7 @@ const JokeList = () => {
       return isLoadingJoke ? <div>Loading random joke...</div> : <JokeItem item={joke as IJoke} />;
     }
 
-    if (debouncedQuery && jokes.length > 0) {
+    if (debouncedQuery) {
       return isLoadingJokes ? (
         <div>Loading jokes...</div>
       ) : jokes.length > 0 ? (

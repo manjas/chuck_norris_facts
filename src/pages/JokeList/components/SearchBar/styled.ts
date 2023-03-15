@@ -9,7 +9,12 @@ export const StyledInput = styled.input`
   border-radius: 12px;
   padding-right: 20px;
   justify-content: space-between;
-  border: 2px solid #442116;
+  border: 2px solid #77513d;
+  font-size: 16px;
+  ::placeholder {
+    color: #c09a82;
+    font-size: 14px;
+  }
 `;
 export const StyledButton = styled.button`
   background: linear-gradient(to bottom right, #99765e, #442116);
