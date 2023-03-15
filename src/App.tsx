@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div>
       <HeaderLabel>Chuck Norris Jokes</HeaderLabel>
       <Container>
         {/* <Switch>
@@ -25,7 +25,7 @@ function App() {
           <Route path='/details/:jokeId' element={<JokeDetails />} />
         </Routes>
       </Container>
-    </>
+    </div>
   );
 }
 

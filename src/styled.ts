@@ -12,8 +12,6 @@ export const Container = styled.div`
   box-sizing: content-box;
   @media (max-width: 768px) {
     padding: 10px;
-    width: 100%;
-    background: unset;
     box-sizing: border-box;
   }
 `;
@@ -37,7 +35,7 @@ export const HeaderLabel = styled.div`
     font-size: 37px;
     writing-mode: horizontal-tb;
     position: relative;
-    margin: 20px 0;
+    margin: 20px 0 30px 0;
     background: linear-gradient(
       90deg,
       rgba(192, 154, 130, 1) 0%,

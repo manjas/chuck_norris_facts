@@ -21,5 +21,5 @@ export const JokeListWrapper = styled.div`
 `;
 
 export const SearchBarWrapper = styled.div`
-  padding: 30px 0;
+  padding-bottom: 30px;
 `;
