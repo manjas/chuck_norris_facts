@@ -7,7 +7,13 @@ type Props = {
 const SearchBar = ({ setQuery }: Props) => {
   const onChangeTextField = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTermInput = event.target.value;
-    setQuery(searchTermInput);
+
+    // optimize searching term
+    if (searchTermInput.trim().length >= 3) {
+      setQuery(searchTermInput);
+    } else {
+      setQuery('');
+    }
   };
 
   return (

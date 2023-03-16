@@ -12,18 +12,18 @@ import { JokeListContainer, JokeListWrapper, SearchBarWrapper } from './styled';
 
 const JokeList = () => {
   const [query, setQuery] = useState('');
+  const [previousSearches, setPreviousSearches] = useState<IJoke[]>([]);
   const debouncedQuery = useDebounce(query, 600);
 
   // fetchers
-  const { joke, isLoadingJoke } = getRandomJoke({ enabled: !('jokes' in localStorage) && !query });
+  const { joke, isLoadingJoke } = getRandomJoke({
+    enabled: previousSearches?.length < 1 && !query,
+  });
   const { jokes, isLoadingJokes, refetch } = useJokeQuery(debouncedQuery);
-
-  // localStorage jokes
-  const storedJokes = JSON.parse(localStorage.getItem('jokes') || '[]');
 
   useEffect(() => {
     if (jokes.length > 1) {
-      localStorage.setItem('jokes', JSON.stringify(jokes.slice(0, 10).map((joke: IJoke) => joke)));
+      setPreviousSearches(jokes.slice(0, 10));
     }
   }, [jokes]);
 
@@ -44,8 +44,8 @@ const JokeList = () => {
       );
     }
 
-    if (!debouncedQuery && 'jokes' in localStorage) {
-      return storedJokes.map((joke: IJoke) => <JokeItem key={joke.id} item={joke} />);
+    if (!debouncedQuery && previousSearches.length > 0) {
+      return previousSearches.map((joke: IJoke) => <JokeItem key={joke.id} item={joke} />);
     }
 
     return isLoadingJoke ? (
