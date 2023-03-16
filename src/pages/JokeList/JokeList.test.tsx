@@ -52,46 +52,44 @@ const fakeItem = {
 };
 
 describe('JokeList', () => {
-  // beforeEach(() => {
-  //   render(
-  //     <QueryClientProvider client={queryClient}>
-  //       <JokeList />
-  //     </QueryClientProvider>,
-  //   );
-  // });
-
-  it('should show search bar', () => {
+  beforeEach(() => {
     render(
       <QueryClientProvider client={queryClient}>
         <JokeList />
       </QueryClientProvider>,
     );
+  });
+
+  it('should show search bar', () => {
     const searchInput = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(searchInput, { target: { value: 'music' } });
     expect(searchInput).toBeInTheDocument();
     expect(searchInput.value).toBe('music');
   });
 
-  it('should show random joke on opening', async () => {
-    // (axios.get as jest.Mock).mockResolvedValue((url) => {
-    //   if (url === 'https://api.chucknorris.io/jokes/random') {
-    //     return Promise.resolve({ joke: fakeItem });
-    //   }
-    // });
-    // expect(screen.getByTestId('loading_random')).toHaveTextContent('Loading random joke...');
-    // const text = await screen.findByRole('joke-item');
-    // expect(text).toBeInTheDocument();
+  it('should show list of jokes when user enters value in search bar', async () => {
+    const searchInput = screen.getByRole('textbox');
+    const searchingQuery = 'music';
+    fireEvent.change(searchInput, { target: { value: searchingQuery } });
+    (axios.get as jest.Mock).mockResolvedValue((url) => {
+      if (url === `https://api.chucknorris.io/jokes/search?query=${searchingQuery}`) {
+        return Promise.resolve({ jokes: fakeItems });
+      }
+    });
+    const jokeItems = await screen.findAllByRole('joke-item');
+    expect(jokeItems.length).toEqual(fakeItems.length);
   });
 
-  it('should show list of jokes when user enters value in search bar', async () => {
-    // const searchInput = screen.getByRole('textbox');
-    // fireEvent.change(searchInput, { target: { value: 'music' } });
-    // (axios.get as jest.Mock).mockResolvedValue((url) => {
-    //   if (url === 'https://api.chucknorris.io/jokes/search?query=music') {
-    //     return Promise.resolve({ jokes: fakeItems });
-    //   }
-    // });
-    // const jokeItems = screen.getAllByRole('joke-item');
-    // expect(jokeItems.length).toEqual(fakeItems.length);
+  it('show no results', async () => {
+    const searchInput = screen.getByRole('textbox');
+    const searchingQuery = 'music';
+    fireEvent.change(searchInput, { target: { value: searchingQuery } });
+    (axios.get as jest.Mock).mockResolvedValue((url) => {
+      if (url === `https://api.chucknorris.io/jokes/search?query=${searchingQuery}`) {
+        return Promise.resolve({ jokes: [] });
+      }
+    });
+    const noResults = await screen.getByText(/no results for searching critera/i);
+    expect(noResults).toBeInTheDocument();
   });
 });

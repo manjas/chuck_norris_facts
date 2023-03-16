@@ -1,6 +1,4 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { render, fireEvent } from '@testing-library/react';
 
 // component
 import SearchBar from '.';

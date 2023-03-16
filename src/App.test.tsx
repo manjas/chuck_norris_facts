@@ -17,13 +17,8 @@ const fakeItem = {
   categories: [],
 };
 
-test('renders the landing page', async () => {
+it('renders the landing page successfully', async () => {
   const queryClient = new QueryClient();
-  (axios.get as jest.Mock).mockResolvedValue((url) => {
-    if (url === 'https://api.chucknorris.io/jokes/random') {
-      return Promise.resolve({ data: fakeItem });
-    }
-  });
   render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -34,7 +29,16 @@ test('renders the landing page', async () => {
     </QueryClientProvider>,
   );
 
+  (axios.get as jest.Mock).mockResolvedValue((url) => {
+    if (url === 'https://api.chucknorris.io/jokes/random') {
+      return Promise.resolve({ joke: fakeItem });
+    }
+  });
+
+  const searchInput = screen.getByRole('textbox');
+  expect(searchInput).toBeInTheDocument();
+  expect(screen.getByText(/Chuck Norris Jokes/)).toBeInTheDocument();
   expect(screen.getByTestId('loading_random')).toHaveTextContent('Loading random joke...');
-  const randomJoke = await screen.findByRole('joke-item');
-  expect(randomJoke).toBeInTheDocument();
+  const text = await screen.findAllByRole('joke-item');
+  expect(text.length).toEqual(1);
 });
