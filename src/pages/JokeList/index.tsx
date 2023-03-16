@@ -34,13 +34,9 @@ const JokeList = () => {
   }, [debouncedQuery]);
 
   function renderContent() {
-    if (!debouncedQuery && !('jokes' in localStorage)) {
-      return isLoadingJoke ? <div>Loading random joke...</div> : <JokeItem item={joke as IJoke} />;
-    }
-
     if (debouncedQuery) {
       return isLoadingJokes ? (
-        <div>Loading jokes...</div>
+        <div data-testid='loading'>Loading jokes...</div>
       ) : jokes.length > 0 ? (
         jokes.map((joke: IJoke) => <JokeItem key={joke.id} item={joke} />)
       ) : (
@@ -51,6 +47,12 @@ const JokeList = () => {
     if (!debouncedQuery && 'jokes' in localStorage) {
       return storedJokes.map((joke: IJoke) => <JokeItem key={joke.id} item={joke} />);
     }
+
+    return isLoadingJoke ? (
+      <div data-testid='loading_random'>Loading random joke...</div>
+    ) : (
+      <JokeItem item={joke as IJoke} />
+    );
   }
 
   return (
@@ -58,7 +60,7 @@ const JokeList = () => {
       <SearchBarWrapper>
         <SearchBar setQuery={setQuery} />
       </SearchBarWrapper>
-      <JokeListWrapper>{renderContent()}</JokeListWrapper>
+      <JokeListWrapper data-testid='joke-list'>{renderContent()}</JokeListWrapper>
     </JokeListContainer>
   );
 };

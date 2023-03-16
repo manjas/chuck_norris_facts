@@ -8,7 +8,7 @@ type Props = {
 };
 const JokeItem = ({ item }: Props) => {
   return (
-    <StyledLink to={`/details/${item.id}`} state={{ joke: item }}>
+    <StyledLink role='joke-item' to={`/details/${item.id}`} state={{ joke: item }}>
       <JokeItemWrapper>{item?.value}</JokeItemWrapper>
     </StyledLink>
   );

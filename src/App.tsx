@@ -14,12 +14,8 @@ function App() {
 
   return (
     <div>
-      <HeaderLabel>Chuck Norris Jokes</HeaderLabel>
+      <HeaderLabel data-testid='side-title'>Chuck Norris Jokes</HeaderLabel>
       <Container>
-        {/* <Switch>
-          <Route exact path='/' component={JokeList} />
-          <Route exact path='/details/:jokeId' component={JokeDetails} />
-        </Switch> */}
         <Routes>
           <Route path='/' element={<JokeList />} />
           <Route path='/details/:jokeId' element={<JokeDetails />} />
