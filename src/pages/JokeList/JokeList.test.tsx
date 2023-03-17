@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import JokeList from '.';
 import * as Fetchers from '../../fetchers.hooks';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const queryClient = new QueryClient();
@@ -82,7 +82,9 @@ describe('Joke list', () => {
     });
     render(<JokeList />, { wrapper });
     const searchInput = screen.getByPlaceholderText('Search Chuck Norris Jokes');
-    userEvent.type(searchInput, 'music');
+    await act(async () => {
+      userEvent.type(searchInput, 'music');
+    });
     expect(await screen.findByText(/Loading jokes.../i)).toBeVisible();
   });
 
@@ -106,7 +108,9 @@ describe('Joke list', () => {
     });
     render(<JokeList />, { wrapper });
     const searchInput = screen.getByPlaceholderText('Search Chuck Norris Jokes');
-    userEvent.type(searchInput, 'not-a-valid-search-criteria');
+    await act(async () => {
+      userEvent.type(searchInput, 'not-valid-search-criteria');
+    });
 
     expect(await screen.findByText(/no results for searching critera/i)).toBeInTheDocument();
   });
