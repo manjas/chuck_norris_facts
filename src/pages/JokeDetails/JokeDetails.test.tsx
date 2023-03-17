@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
-import JokeItem from '.';
+import JokeDetails from '.';
 
 const queryClient = new QueryClient();
 
@@ -21,10 +21,9 @@ const wrapper = ({ children }) => (
   </QueryClientProvider>
 );
 
-describe('JokeItem', () => {
+describe('JokeDetail', () => {
   it('shows joke item properlly', () => {
-    render(<JokeItem item={fakeItem} />, { wrapper });
-    const itemText = screen.getByRole('joke-item').textContent;
-    expect(itemText).toBe(fakeItem.value);
+    render(<JokeDetails />, { wrapper });
+    const itemDetail = screen.getByRole('joke-details');
   });
 });

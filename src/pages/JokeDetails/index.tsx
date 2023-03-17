@@ -10,7 +10,7 @@ const JokeDetails = () => {
   return (
     <>
       <Button onClick={() => navigate(-1)}>Go Back</Button>
-      <JokeDetailsContainer>
+      <JokeDetailsContainer role='joke-details'>
         {/* <img src={joke?.icon_url} alt='No image' /> */}
         <img
           src={'https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png'}
