@@ -16,7 +16,7 @@ const JokeDetails = () => {
           src={'https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png'}
           alt='No image'
         />
-        <div> {joke?.value}</div>
+        <div>{joke?.value}</div>
       </JokeDetailsContainer>
     </>
   );
