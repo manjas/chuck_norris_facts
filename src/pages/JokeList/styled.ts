@@ -7,7 +7,8 @@ export const JokeListContainer = styled.div`
   max-height: 90%;
   align-items: center;
   @media (max-width: 768px) {
-    max-width: unset;
+    max-width: 95%;
+    align-items: center;
   }
 `;
 
