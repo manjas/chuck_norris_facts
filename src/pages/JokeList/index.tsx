@@ -23,7 +23,7 @@ const JokeList = () => {
 
   useEffect(() => {
     if (jokes.length > 1) {
-      setPreviousSearches(jokes.slice(0, 10));
+      setPreviousSearches(jokes.slice(-10));
     }
   }, [jokes]);
 
