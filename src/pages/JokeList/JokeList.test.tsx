@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import JokeList from '.';
 import * as Fetchers from '../../fetchers.hooks';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 const queryClient = new QueryClient();
 
@@ -57,53 +58,56 @@ afterEach(() => {
 });
 
 describe('Joke list', () => {
-  it('loading random joke', () => {
+  it('renders "loading random joke" message', () => {
     jest
       .spyOn(Fetchers, 'getRandomJoke')
       .mockReturnValue({ joke: 'tralalal', isLoadingJoke: true });
-
     render(<JokeList />, { wrapper });
     expect(screen.getByText(/Loading random joke.../i)).toBeVisible();
   });
 
-  it('displays random joke', async () => {
+  it('renders random joke when query and previous searches are empty', async () => {
     jest.spyOn(Fetchers, 'getRandomJoke').mockReturnValue({ joke: fakeJoke, isLoadingJoke: false });
-
     render(<JokeList />, { wrapper });
     const item = await screen.findAllByRole('joke-item');
     expect(item).toHaveLength(1);
     expect(await screen.getByText(fakeJoke.value)).toBeInTheDocument();
   });
 
-  it('should show list of jokes when user enters value in search bar', async () => {
+  it('renders "loading jokes" message', async () => {
     jest.spyOn(Fetchers, 'useJokeQuery').mockReturnValue({
       jokes: fakeJokes,
-      isLoadingJokes: false,
-      refetch: (): Promise<any> => Promise.resolve({}),
-    });
-
-    render(<JokeList />, { wrapper });
-    const jokeItems = await screen.findAllByRole('joke-item');
-    expect(jokeItems).toHaveLength(fakeJokes.length);
-  });
-
-  it('loading jokes...', async () => {
-    jest.spyOn(Fetchers, 'useJokeQuery').mockReturnValue({
-      jokes: [],
       isLoadingJokes: true,
       refetch: (): Promise<any> => Promise.resolve({}),
     });
     render(<JokeList />, { wrapper });
-    expect(screen.getByText(/Loading jokes.../i)).toBeVisible();
+    const searchInput = screen.getByPlaceholderText('Search Chuck Norris Jokes');
+    userEvent.type(searchInput, 'music');
+    expect(await screen.findByText(/Loading jokes.../i)).toBeVisible();
   });
 
-  it('shows no results label', async () => {
+  it('renders list of jokes when user enters value in search bar', async () => {
+    jest.spyOn(Fetchers, 'useJokeQuery').mockReturnValue({
+      jokes: fakeJokes,
+      isLoadingJokes: false,
+      refetch: jest.fn(),
+    });
+    render(<JokeList />, { wrapper });
+
+    const jokeItems = await screen.findAllByRole('joke-item');
+    expect(jokeItems).toHaveLength(fakeJokes.length);
+  });
+
+  it('renders no results message when search criteria does not match any jokes', async () => {
     jest.spyOn(Fetchers, 'useJokeQuery').mockReturnValue({
       jokes: [],
       isLoadingJokes: false,
-      refetch: (): Promise<any> => Promise.resolve({}),
+      refetch: jest.fn(),
     });
     render(<JokeList />, { wrapper });
-    expect(await screen.findByText(/No results for searching critera/i)).toBeVisible();
+    const searchInput = screen.getByPlaceholderText('Search Chuck Norris Jokes');
+    userEvent.type(searchInput, 'not-a-valid-search-criteria');
+
+    expect(await screen.findByText(/no results for searching critera/i)).toBeInTheDocument();
   });
 });
