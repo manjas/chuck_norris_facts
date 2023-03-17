@@ -12,6 +12,9 @@ export function getRandomJoke({ enabled }: { enabled: boolean }) {
     {
       select: ({ data }) => data,
       enabled: enabled,
+      onError: (error) => {
+        console.log(error);
+      },
     },
   );
   return { joke: data ?? '', isLoadingJoke: isLoading };
@@ -27,6 +30,9 @@ export function useJokeQuery(query: string) {
           return item;
         }),
       enabled: !!query,
+      onError: (error) => {
+        console.log(error);
+      },
     },
   );
   return { jokes: data ?? [], isLoadingJokes: isLoading, refetch };
