@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import JokeList from '.';
-import * as Fetchers from '../../fetchers.hooks';
+import * as Fetchers from '../../hooks/fetchers.hooks';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';

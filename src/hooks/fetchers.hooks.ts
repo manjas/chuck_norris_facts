@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { IJoke } from './types';
+import { IJoke } from '../types';
 
 export const RANDOM_JOKE = 'random-joke';
 export const GET_JOKE = 'get-joke';

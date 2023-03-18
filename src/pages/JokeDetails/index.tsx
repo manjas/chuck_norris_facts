@@ -11,10 +11,12 @@ const JokeDetails = () => {
     <>
       <Button onClick={() => navigate(-1)}>Go Back</Button>
       <JokeDetailsContainer role='joke-details'>
-        {/* <img src={joke?.icon_url} alt='No image' /> */}
+        {/* since this image for some reason is not available on endpoint,
+        in order to make application look better I added Chuck Norris facts API logo instead*/}
+        {/* <img src={joke?.icon_url} alt='chucknorris_joke' /> */}
         <img
           src={'https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png'}
-          alt='No image'
+          alt='chucknorris_logo'
         />
         <div>{joke?.value}</div>
       </JokeDetailsContainer>

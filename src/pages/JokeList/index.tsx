@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import JokeItem from './components/JokeItem';
 // hooks
-import { getRandomJoke, useJokeQuery } from '../../fetchers.hooks';
+import { getRandomJoke, useJokeQuery } from '../../hooks/fetchers.hooks';
 import useDebounce from '../../hooks/useDebounce';
 // types
 import { IJoke } from '../../types';
