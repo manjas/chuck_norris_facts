@@ -4,6 +4,9 @@ import JokeList from '.';
 import * as Fetchers from '../../fetchers.hooks';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axios from 'axios';
+
+jest.mock('axios');
 
 const queryClient = new QueryClient();
 
@@ -113,5 +116,19 @@ describe('Joke list', () => {
     });
 
     expect(await screen.findByText(/no results for searching critera/i)).toBeInTheDocument();
+  });
+
+  it('returns an error (Axios GET request)', async () => {
+    render(<JokeList />, { wrapper });
+    const error = new Error('Network Error');
+    (axios.get as jest.Mock).mockRejectedValue(error);
+
+    try {
+      await expect(axios.get).toHaveBeenCalledWith(
+        'https://api.chucknorris.io/jokes/search?query=someValue',
+      );
+    } catch (error) {
+      expect(error).toEqual(error);
+    }
   });
 });
