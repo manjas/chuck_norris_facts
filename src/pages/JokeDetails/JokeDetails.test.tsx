@@ -3,9 +3,9 @@ import { MemoryRouter } from 'react-router-dom';
 import JokeDetails from '.';
 
 describe('JokeDetails', () => {
-  it('displays the joke details', () => {
+  it('displays joke details', () => {
     const joke = {
-      created_at: '"2020-01-05 13:42:19.897976"',
+      created_at: '2020-01-05 13:42:19.897976',
       icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
       id: 'vQ6Ds6g-T4me2Hbl7Gjc4w',
       updated_at: '2020-01-05 13:42:19.897976',

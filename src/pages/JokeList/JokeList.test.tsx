@@ -11,18 +11,18 @@ jest.mock('axios');
 const queryClient = new QueryClient();
 
 const fakeJoke = {
-  created_at: '"2020-01-05 13:42:19.897976"',
+  created_at: '2020-01-05 13:42:19.897976',
   icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
-  id: 'vQ6Ds6g-T4me2Hbl7Gjc4w',
+  id: 'vQ6Ds6g-T32e2Hbl7Gjc4w',
   updated_at: '2020-01-05 13:42:19.897976',
-  url: 'Chuck Norris can run Windows 7 on a Commodore 64.',
-  value: 'Commodore 64.',
+  url: 'https://api.chucknorris.io/jokes/vQ6Ds6g-T32e2Hbl7Gjc4w.',
+  value: 'Chuck Norris can run Windows 7 on a Commodore 64.',
   categories: [],
 };
 
 const fakeJokes = [
   {
-    created_at: '"2020-01-05 13:42:19.897976"',
+    created_at: '2020-01-05 13:42:19.897976',
     icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
     id: 'qsDNqQTrTpiUc0wAeGMACA',
     updated_at: '2020-01-05 13:42:19.897976',
@@ -31,7 +31,7 @@ const fakeJokes = [
     categories: [],
   },
   {
-    created_at: '"2020-01-05 13:42:19.897976"',
+    created_at: '2020-01-05 13:42:19.897976',
     icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
     id: 'nYOVGEFyTSGWNJBILV6x8Q',
     updated_at: '2020-01-05 13:42:19.897976',
@@ -40,7 +40,7 @@ const fakeJokes = [
     categories: [],
   },
   {
-    created_at: '"2020-01-05 13:42:19.897976"',
+    created_at: '2020-01-05 13:42:19.897976',
     icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
     id: 'P-tx2WHeTrm2ccB9Hwu9GA',
     updated_at: '2020-01-05 13:42:19.897976',
