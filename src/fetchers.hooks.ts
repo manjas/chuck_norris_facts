@@ -13,7 +13,7 @@ export function getRandomJoke({ enabled }: { enabled: boolean }) {
       select: ({ data }) => data,
       enabled: enabled,
       onError: (error) => {
-        console.log(error);
+        console.error(error);
       },
     },
   );
@@ -31,7 +31,7 @@ export function useJokeQuery(query: string) {
         }),
       enabled: !!query,
       onError: (error) => {
-        console.log(error);
+        console.error(error);
       },
     },
   );

@@ -41,4 +41,5 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: 2.5;
   padding: 0 1rem;
+  align-self: flex-start;
 `;

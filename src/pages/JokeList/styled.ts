@@ -17,7 +17,7 @@ export const JokeListWrapper = styled.div`
   max-height: 70%;
   overflow-y: auto;
   @media (max-width: 768px) {
-    max-width: 95%;
+    max-width: 100%;
   }
 `;
 
