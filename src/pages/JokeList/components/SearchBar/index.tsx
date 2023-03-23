@@ -9,7 +9,7 @@ const SearchBar = ({ setQuery }: Props) => {
     const searchTermInput = event.target.value;
 
     // optimize searching term
-    if (searchTermInput.length >= 3) {
+    if (searchTermInput.trim().length >= 3) {
       setQuery(searchTermInput.trim());
     } else {
       setQuery('');

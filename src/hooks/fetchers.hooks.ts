@@ -22,7 +22,7 @@ export function getRandomJoke({ enabled }: { enabled: boolean }) {
 
 export function useJokeQuery(query: string) {
   const { data, isLoading, refetch } = useQuery(
-    [GET_JOKE],
+    [GET_JOKE, query],
     () => axios.get(`https://api.chucknorris.io/jokes/search?query=${query}`),
     {
       select: ({ data }) =>

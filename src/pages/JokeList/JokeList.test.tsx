@@ -124,11 +124,9 @@ describe('Joke list', () => {
     (axios.get as jest.Mock).mockRejectedValue(error);
 
     try {
-      await expect(axios.get).toHaveBeenCalledWith(
-        'https://api.chucknorris.io/jokes/search?query=someValue',
-      );
-    } catch (error) {
-      expect(error).toEqual(error);
+      await expect(axios.get).toHaveBeenCalledWith('https://api.chucknorris.io/jokes/random');
+    } catch (err) {
+      expect(err).toEqual(error);
     }
   });
 });
